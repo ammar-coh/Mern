@@ -12,12 +12,11 @@ import { addToCartSaga, updateUser, deleteDispatch } from "./redux/actions";
 import { useDispatch } from "react-redux";
 import { BsTrash } from "react-icons/bs";
 import { GrUpdate } from "react-icons/gr";
-// import {FaStar} from "react-icons/fa";
 
 const useStyles = makeStyles({
   root: {
     marginLeft: "0px",
-    marginTop: 90,
+    marginTop: 30,
     width: "300px",
     height: "320px",
     boxSizing: "border-box",
@@ -54,6 +53,7 @@ const useStyles = makeStyles({
 function Item({ image, price, id, year }) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const userRole = localStorage.getItem("role") === "admin";
   const [finalUpdatedPrice, updatedPrice] = useState();
   const getPriceFromInput = (event) => {
     updatedPrice(event.target.value);
@@ -98,12 +98,12 @@ function Item({ image, price, id, year }) {
           Add to Cart{" "}
         </Button>
 
-        {localStorage.getItem("role") === "admin" ? (
+        {userRole == true ? (
           <BsTrash onClick={deleteItem} className={classes.del} />
         ) : null}
       </CardActions>
 
-      {localStorage.getItem("role") === "admin" ? (
+      {userRole == true ? (
         <input
           className={classes.input}
           placeholder="update price"
@@ -112,7 +112,7 @@ function Item({ image, price, id, year }) {
         />
       ) : null}
 
-      {localStorage.getItem("role") === "admin" ? (
+      {userRole == true ? (
         <CardActions>
           <GrUpdate className={classes.update} onClick={updatePrice} />
         </CardActions>
@@ -122,16 +122,6 @@ function Item({ image, price, id, year }) {
 }
 
 export default Item;
-
-
-
-
-
-
-
-
-
-
 
 // eslint-disable-next-line no-lone-blocks
 {
