@@ -6,9 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 export function* getProductsToCartSaga(action){
   //const [data]= action
- console.log("data from itemsAddtoCart action", action.data)
+ console.log("data from itemsAddtoCart action", JSON.stringify(action.data))
     try{
-           const response = yield call(requestGetProductsToCart);
+           const response = yield call(requestGetProductsToCart,action.data);
             const {data} = response
             console.log("get cart products", data)
           // localStorage.setItem('cart',response.data)
@@ -26,15 +26,15 @@ export function* addProductsToCart(action){
 
              const response = yield call(requestAddProductsToCart,action.data);
               const {data} = response
-              console.log("shop", data.current_user)
-              console.log("reapeat", data.repeat)
-           if (data.repeat =="already"){
+              console.log("shop", data)
+              console.log("reapeat", data)
+          
             
              yield put(addToCartReducer(data))
-           }else{
-            localStorage.setItem('cart',response.data.current_user)
-            yield put(addToCartReducer(data.current_user))
-           }
+           
+          
+            
+           
             
   } catch(error){
     console.log(error)

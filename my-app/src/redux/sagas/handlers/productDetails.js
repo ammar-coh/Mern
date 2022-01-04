@@ -22,17 +22,15 @@ export function* handleGetUser(){
 
 
 export function* updateInfo(action){
-
+  console.log('UPDATESaga', action.data)
   try {
      const response = yield call(requestUpdateProduct,action.data);
  // console.log('UPDATESaga', action.data)
   console.log(response.data,'response')
-          if (response.data.error =='unable to update product'){
-            alert("authorized personnel only")
-          }
-          else{
-            yield put(updateUserDetails(response.data.data))
-          }
+         
+        
+            yield put(updateUserDetails(response.data))
+          
      
   
 } catch (error) {
@@ -46,12 +44,9 @@ export function* deleteInfo(action){
   try {
    const response = yield call(requestDestroyProduct,action.data)
  // const  {data} = response
-  console.log(response.data, "respon")
-  if (response.data== "nothing") {
-   alert ("authorized personnel only")
-  } else {
+            console.log("respo",response.data)
     yield put(deleteDetails(response.data))
-  }
+  
    
 } catch (error) {
   

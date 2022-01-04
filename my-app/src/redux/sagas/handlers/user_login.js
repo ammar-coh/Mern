@@ -10,7 +10,7 @@ export function* postSign_Up(action){
   if(action.data.password.length >= 8){
      try{
         const response= yield call(requestPostSign_Up,action.data) 
-         
+         console.log(response.data)
          if (response.data.confirm == "registered"){action.data.history.push('/login_page')
       }    } catch(error){
     console.log(error)
@@ -25,14 +25,16 @@ export function* postSign_In(action){
       try{
              const response = yield call(requestPostSign_In,action.data);
               const {data} = response
-             console.log(data)
-             if (data.user_name){action.data.history.push('/')}
+             console.log('loggeddd',data.user.displayName)
+             if (data.user.displayName){action.data.history.push('/')}
              else{
                 alert (`${data.message}`)
              }
 
-             localStorage.setItem('for_reducer',JSON.stringify(response.data))
-            localStorage.setItem('authorization',response.data.token);
+             localStorage.setItem('user_details',response.data.user.displayName)
+             localStorage.setItem('id',response.data.user.id)
+            localStorage.setItem('Authorization',response.data.token);
+            localStorage.setItem('role', response.data.user.role)
           yield put(sign_in_reducer(data))
   } catch(error){
      console.log(error)

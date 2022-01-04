@@ -52,15 +52,16 @@ function Product() {
                 image={i?.image}
                 price={i.price}
                 year={i.year}
-                id={i.id}
+                id={i._id}
                 rating={i.ratings}
               />
             </div>
           ))}
-      </div>
+      </div>    { localStorage.getItem("role")==='admin'?
                 <div className={classes.add_product}>
-                  {user.role == 'admin'? <Entry/>: null}
-                  </div>
+                   <Entry/>
+                  </div>:null
+                  }
       {/**  </Grid>*/}
     </div>
   );

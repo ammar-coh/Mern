@@ -18,11 +18,11 @@ export const productDetails = (state = initialState, actions) => {
       console.log("initialState", state);
       console.log("updatepriceReducer", actions.data);
       let findIndex = state.details.findIndex(
-        (item) => item.id === actions.data.id
+        (item) => item._id === actions.data._id
       );
-
+              console.log('_id', findIndex)
       let update = state.details.map(el => {
-        return el.id === actions.data.id ? { ...el, ...actions.data } : el
+        return el._id === actions.data._id ? { ...el, ...actions.data } : el
       })
       console.log("details new", update)
       return {
@@ -34,8 +34,8 @@ export const productDetails = (state = initialState, actions) => {
 
     case "deleteDetails":
       //console.log(state)
-      //  console.log('check', actions.data)
-      var index = state.details.findIndex((i) => i.id === actions.data.id);
+       console.log('checque', actions.data)
+      var index = state.details.findIndex((i) => i._id === actions.data._id);
       //console.log(index)
       var final = state.details.splice(index, 1);
       //console.log(final)

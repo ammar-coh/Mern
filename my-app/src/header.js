@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import {useHistory}  from 'react-router-dom';
+import {useHistory, Redirect}  from 'react-router-dom';
 import Cart from './Cart';
 import Sign_in from './sign_in';
 import { sign_in_reducer, addToCartReducer , resetCart} from './redux/actions';
@@ -54,21 +54,26 @@ function Header() {
             <div className={classes.root}>
             <Cart/>
             <Sign_in/>
+    
             <Link className={classes.home_link} to="/">
             {/* <h2 className={classes.home}>  Home   </h2>   */}
             {/* <HomeOutlinedIcon/>     */}
          <div className={classes.icon}> <AiOutlineHome/></div>
-           </Link>
-          
+           </Link>:
+        
+         
+        { localStorage.getItem('Authorization')?
             <Button className={classes.sign_out}  size="small" onClick = {()=>{
                 
                 dispatch
                 (sign_in_reducer({}))
                 dispatch (resetCart())
-                localStorage.removeItem('authorization')
+                localStorage.removeItem('Authorization')
                 localStorage.removeItem('cart')
-                localStorage.removeItem('for_reducer')
-                history.push("/login_page")}}  >  Sign out  </Button>      
+                localStorage.removeItem('user_details')
+                localStorage.removeItem('id')
+               
+                history.push("/login_page")}}  >  Sign out  </Button> : null   }  
           
             </div>
         </div>

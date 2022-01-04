@@ -3,32 +3,20 @@
 export const checkoutreducer = (state = [], actions) => {
     switch (actions.type) {
         case 'setProductsToCartReducer':
-
-            console.log("setProductsToCartReducer", actions.data)
-            if (actions.data == "no items to show") {
-                state = []
-            }
-            else {
-                state = actions.data
-            }
-
+                console.log(actions.data)
+        
+           
+    
+                state = actions.data.products
+            
 
             return state
         case 'addToCartReducer':
             //console.warn('reducer',actions)
             console.log("cart quantyiy", state)
-            console.log("addToCartReducer", actions.data)
-            let updated
-            if (actions.data.repeat == "already") {
-                // console.log("new product ", actions.data.product)
-
-            //   var store =   state.push(actions.data.product)
-            var store=  state.push(actions.data.product)
-            console.log([...state])
-        state=   [...state]
-              
-            }
-            else { state = actions.data }
+            console.log("addToCartReducer", actions.data.data.products)
+        
+           state = actions.data.data.products
             
             return  state 
 
@@ -38,7 +26,7 @@ export const checkoutreducer = (state = [], actions) => {
         case 'removeFromCartReducer':
             // var index= state.indexOf(actions.data.delete)
             console.log('remove from cart reducer', actions.data)
-            state = actions.data
+            state = actions.data.products
             return state
 
         case 'resetCart':

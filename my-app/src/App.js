@@ -1,7 +1,7 @@
 import './App.css';
 import Product from './product';
 import Cart from './Cart';
-import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useHistory, Redirect } from 'react-router-dom';
 import checkout from './checkout';
 import Sidebar from './sideBar'
 import AddProduct from './addProduct'
@@ -23,25 +23,27 @@ function App() {
   const uname = useSelector((state) => state.user_login.details)
   //  console.log("imported", uname?.user_name)
 
+  
   useEffect(() => {
-    localStorage.getItem('authorization')&& dispatch(getUser());
+    localStorage.getItem('Authorization') && dispatch(getUser()); {/** localStorage.getItem('authorization')&& */}
 
-  }, [uname?.user_name]);
+  }, ); //[uname?.user_name]
   // useEffect(() => { dispatch(getSign_In(localStorage.getItem('for_reducer')));
 
   // }, []);
 
 
+  // useEffect(() => {
+  //   localStorage.getItem('Authorization')&& dispatch(sign_in_reducer(JSON.parse(localStorage.getItem('for_reducer'))))
+  // }, [])
   useEffect(() => {
-    localStorage.getItem('authorization')&& dispatch(sign_in_reducer(JSON.parse(localStorage.getItem('for_reducer'))))
-  }, [])
-  useEffect(() => {
-    localStorage.getItem('authorization')&& dispatch(getProductsToCartSaga())
-  }, [uname?.user_name])
+    localStorage.getItem('Authorization')&& dispatch(getProductsToCartSaga(localStorage.getItem('id')))
+  },[localStorage.getItem('id')] )  //[uname?.user_name]
 
   // const update= useSelector((state) => state.productDetails.details);
 
   // console.log(update)
+  const history = useHistory()
 
   return (
     <div >
@@ -50,15 +52,20 @@ function App() {
 
 
 
-
+{console.log(`localStorage.getItem('user_details')`, localStorage.getItem('user_details'))}
         <Switch>
           <Route path='/login_page' exact component={Login_page} />
           <Route path='/sign_up' exact component={Sign_up} />
           <Route path='/products/add' exact component={AddProduct} />
           <Route path='/products/del' exact component={Del} />
-          <Route path='/checkout' exact component={checkout} />
-          <Route path='/' exact component={Product} />
-          {/* <Route path='*'  component={Login_page} /> */}
+          { localStorage.getItem('user_details')?
+          <Route path='/checkout' exact component={checkout} />:<Route path='/login_page' exact component={Login_page} />
+        }
+          { localStorage.getItem('user_details')?
+          <Route path='/' exact component={Product}/>: <Route path='/login_page' exact component={Login_page} />
+        }
+        
+          <Route path='*'  component={Login_page} />
         </Switch>
       </Router>
     </div>

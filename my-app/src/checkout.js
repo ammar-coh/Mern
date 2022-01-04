@@ -54,8 +54,7 @@ function Checkout() {
   const counts = useSelector((state) => state.checkout);
   console.log("almost there",counts);
   const dispatch = useDispatch()
-  let removeDuplicate = [...counts.reduce((map, obj)=> map.set(obj.id, obj), new Map()).values()]
-  console.log("duplicate",removeDuplicate)
+  
 
   return (
     <div className={classes.main}>
@@ -69,8 +68,8 @@ function Checkout() {
           <h3 className={classes.head}>Cart</h3>
           <div className={classes.pro}>
             
-            {removeDuplicate.map((i) => (
-              <CheckoutContainer image={i.image} price={i.price} id={i.id} />
+            {counts.map((i) => (
+              <CheckoutContainer image={i.image} price={i.price} id={i._id} qty= {i.qty} />
             ))}
           </div>
         </div>

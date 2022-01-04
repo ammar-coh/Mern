@@ -78,6 +78,7 @@ function Entry(props) {
 })
 
     return (
+        
         <div className={classes.root}>
              <h1 className={classes.disp}> Add New items</h1>
             <form onSubmit={formik.handleSubmit}>

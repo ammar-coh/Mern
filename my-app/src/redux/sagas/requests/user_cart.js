@@ -1,10 +1,14 @@
 import axios from 'axios'; 
 
 export function requestGetProductsToCart(data){
+  console.log('allls',data)
   return axios.request({
       method:'get',
-      url:`http://localhost:3000/api/v1/shops`,
-      headers:{Authorization: `Bearer ${localStorage.getItem('authorization')}`}
+      url:`http://localhost:8080/cart/user-cart`,
+
+      params:{id: data},
+
+      headers:{Authorization: ` ${localStorage.getItem('Authorization')}`}
 
   })
 }
@@ -12,11 +16,10 @@ export function requestGetProductsToCart(data){
 export function requestAddProductsToCart(data){
     return axios.request({
         method:'post',
-        url:`http://localhost:3000/api/v1/shops`,
-       params:{image: data.image, 
-            price: data.price,
-              product_id: data.product_id  },
-            headers:{Authorization: `Bearer ${localStorage.getItem('authorization')}`}
+        url:`http://localhost:8080/cart/user-cart`,
+       data:{id:data.id, product_id: data.product_id  },
+       headers:{Authorization: `${localStorage.getItem('Authorization')}`}
+
 
     })
 }
@@ -24,9 +27,12 @@ export function requestAddProductsToCart(data){
 export function requestDeleteProductsFromCart(data){
   return axios.request({
       method:'delete',
-      url:`http://localhost:3000/api/v1/shops/${data.product_id}`,
+      url:`http://localhost:8080/cart/user-cart`,
+      data: {id: data.id,
+        product_id: data.product_id
+      },
      
-          headers:{Authorization: `Bearer ${localStorage.getItem('authorization')}`}
+      headers:{Authorization: `${localStorage.getItem('Authorization')}`}
 
   })
 }

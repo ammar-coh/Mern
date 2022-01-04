@@ -22,11 +22,11 @@ const useStyles = makeStyles({
       maxWidth: 345,
       marginLeft:50,
       marginTop:30,
-      width:'200px',
+      width:'300px',
     },
     media: {
-      width:'150px',
-      height:'250px',
+      width:'240px',
+      height:'150px',
       marginLeft:27,
     },
     cart:{
@@ -116,7 +116,7 @@ function Checkoutproduct(props) {
             <p className={classes.quan}>Qty</p>
             <div className={classes.qty}>
            <select  onChange={formik.handleChange} value={formik.values.year} className={classes.year} name='year'>
-           <option value="" default selected>{filtered.length }</option>
+           <option value="" default selected>{props.qty}</option>
            <option value="1999">2</option>
     <option value="1991">3</option>
     <option value="1998">4</option>
@@ -139,7 +139,8 @@ function Checkoutproduct(props) {
           <Button onClick={()=>{
             dispatch(removeFromCartSaga({image: props.image,
             price:props.price,
-            product_id: props.id}))
+            product_id: props.id,
+          id: localStorage.getItem('id')}))
           }} className= {classes.cart} size="small" >
          Remove from Cart
           </Button>

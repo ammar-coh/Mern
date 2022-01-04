@@ -16,9 +16,9 @@ const useStyles = makeStyles({
         height:"50px",
         marginTop:"-45px",
         border: "none",
-        '&:hover': {
-          border:" 1px solid white",
-        },
+        // '&:hover': {
+        //   border:" 1px solid white",
+        // },
     },
     user:{
         // fontSize:"15px !important",
@@ -46,12 +46,13 @@ function Sign_in() {
     const classes = useStyles();
     const user = useSelector((state) => state.user_login.details);
     console.log("final", user?.user_name)
+    var user_name = localStorage.getItem('user_details')
+    console.log(user_name?.length)
     return (
         <div className={classes.root}>
             <p className={classes.hello}>Hello,</p>
            
-            { user?.user_name&&
-             user.user_name?.length > 0   ? <p className={classes.current_user}>{user?.user_name}</p>
+            { user_name?.length >0  ? <p className={classes.current_user}>{user_name}</p>
              :
             <Link  className={classes.login_link} to='/login_page'>
                  <p className={classes.user}>Sign_in</p>

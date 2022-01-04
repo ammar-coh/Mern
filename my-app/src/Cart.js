@@ -15,9 +15,9 @@ const useStyles = makeStyles({
                 width:"60px",
                 height:"40px",
                 border: "none",
-                '&:hover': {
-                  border:" 1px solid white",
-                },
+                // '&:hover': {
+                //   border:" 1px solid white",
+                // },
               
     },
 
@@ -48,13 +48,19 @@ function Cart() {
     const classes = useStyles()
     const counts= useSelector((state)=> state.checkout)
    console.log("carts count",counts)
+   var sum = 0
+   var totalCount = counts.map(i=>{
+     
+     sum += i.qty
+   })
+   var itemsCount= sum
     return (
       
       <Link  className= {classes.checkout_link} to='/checkout'>
            
         <div className={classes.root}>
          
-           <h3 className={classes.count}>{typeof(counts)== "number"? counts:counts.length}</h3>
+           <h3 className={classes.count}>{itemsCount}</h3>
         
             
            <span className={classes.icon}>
