@@ -4,7 +4,7 @@ export function requestPostSign_Up(data) {
   console.log("see off", data.user_name);
   return axios.request({
     method: "post",
-    url: `http://localhost:8080/users/register`,
+    url: `http://localhost:8081/users/register`,
     data: {
       email: data.email,
       password: data.password,
@@ -17,7 +17,7 @@ export function requestPostSign_Up(data) {
 export function requestPostSign_In(data) {
   return axios.request({
     method: "post",
-    url: `http://localhost:8080/users/login`,
+    url: `http://localhost:8081/users/login`,
     data: { email: data.email, password: data.password },
   });
 }

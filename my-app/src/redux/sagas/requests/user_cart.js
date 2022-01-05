@@ -4,7 +4,7 @@ export function requestGetProductsToCart(data){
   console.log('allls',data)
   return axios.request({
       method:'get',
-      url:`http://localhost:8080/cart/user-cart`,
+      url:`http://localhost:8081/cart/user-cart`,
 
       params:{id: data},
 
@@ -16,7 +16,7 @@ export function requestGetProductsToCart(data){
 export function requestAddProductsToCart(data){
     return axios.request({
         method:'post',
-        url:`http://localhost:8080/cart/user-cart`,
+        url:`http://localhost:8081/cart/user-cart`,
        data:{id:data.id, product_id: data.product_id  },
        headers:{Authorization: `${localStorage.getItem('Authorization')}`}
 
@@ -27,7 +27,7 @@ export function requestAddProductsToCart(data){
 export function requestDeleteProductsFromCart(data){
   return axios.request({
       method:'delete',
-      url:`http://localhost:8080/cart/user-cart`,
+      url:`http://localhost:8081/cart/user-cart`,
       data: {id: data.id,
         product_id: data.product_id
       },

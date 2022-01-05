@@ -3,7 +3,7 @@ import axios from "axios";
 export const requestGetProduct = () => {
   return axios.request({
     method: "get",
-    url: "http://localhost:8080/products/list",
+    url: "http://localhost:8081/products/list",
     headers: { Authorization: `${localStorage.getItem("Authorization")}` },
   });
 };
@@ -12,7 +12,7 @@ export function requestUpdateProduct(data) {
   console.log("almost", data);
   return axios.request({
     method: "put",
-    url: `http://localhost:8080/products/list/:product_id`,
+    url: `http://localhost:8081/products/list/:product_id`,
     data: { price: data.price, product_id: data.id },
     headers: { Authorization: ` ${localStorage.getItem("Authorization")}` },
   });
@@ -33,7 +33,7 @@ export function requestCreateProduct(data) {
 export function requestDestroyProduct(data) {
   return axios.request({
     method: "delete",
-    url: `http://localhost:8080/products/list/:product_id`,
+    url: `http://localhost:8081/products/list/:product_id`,
     //headers: {"Access-Control-Allow-Origin": "*"}
     headers: { Authorization: ` ${localStorage.getItem("Authorization")}` },
     data: {
