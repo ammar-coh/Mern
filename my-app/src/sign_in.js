@@ -1,6 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import { BsPerson } from "react-icons/bs";
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +24,9 @@ const useStyles = makeStyles({
 
   hello: { color: "white" },
 
-  login_link: { textDecoration: "none" },
+  login_link: { border:'0.5px', marginTop:'17px' ,color:'black',
+fontSize:'20px',
+},
 
   current_user: { color: "white", marginLeft: "12px" },
 });
@@ -40,8 +44,8 @@ function Sign_in() {
         <p className={classes.current_user}>{user_name}</p>
       ) : (
         <Link className={classes.login_link} to="/login_page">
-          <p className={classes.user}>Sign_in</p>
-        </Link>
+        <BsPerson/>
+    </Link>
       )}
     </div>
   );

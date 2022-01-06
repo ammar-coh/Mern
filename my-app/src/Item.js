@@ -20,6 +20,7 @@ const useStyles = makeStyles({
     width: "300px",
     height: "320px",
     boxSizing: "border-box",
+    border:"1px solid transparent"
   },
 
   media: { width: "240px", height: "150px", marginLeft: 27 },

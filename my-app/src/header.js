@@ -8,25 +8,31 @@ import Cart from "./Cart";
 import Sign_in from "./sign_in";
 import { sign_in_reducer, addToCartReducer, resetCart } from "./redux/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AiOutlineHome } from "react-icons/ai";
+import { AiFillLayout, AiOutlineHome } from "react-icons/ai";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "#131921",
+    backgroundColor: "#FCB800",
     width: "100%",
-    height: "50px",
-    border: "solid black",
+    height: "40px",
+    borderBottom: "1px solid rgba(0,0,0,.15)",
+    // visibility:"hidden",
+    //border:"1px solid black",
+    // animation:`$load 5000ms ease-in-out`,
+    paddingTop: "25px ",
+    paddingRight: "0px",
   },
 
-  home: {
-    width: "70px",
-    color: "white",
-    textDecoration: "none",
-    marginTop: "-40px",
-  },
-
-  home_link: {
-    textDecoration: "none",
+  left_container: {
+    // border: "1px solid black",
+    display: "flex",
+    width:'238px',
+    gap:"50px",
+    marginLeft:"130px",
+    height:"40px",
+    // paddingTop:"5px",
+    // paddingBottom:"5px",
   },
 
   sign_out: {
@@ -36,13 +42,47 @@ const useStyles = makeStyles({
     marginTop: "-50px",
     marginLeft: "1380px",
   },
-
-  icon: {
-    marginTop: "-35px",
-    fontSize: "20px",
-    marginLeft: "40px",
-    color: "white",
+  home_link:{
+    textDecoration:"none",
   },
+
+  home_text: {
+    color: "#000000",
+    textDecoration: "none",
+    fontWeight: 400,
+    fontSize: "16px",
+    fontFamily: "Work Sans, sans-serif",
+    lineHeight: "20px",
+
+    width: "50px",
+  },
+  about_text: {
+    color: "#000000",
+    textDecoration: "none",
+    fontWeight: 400,
+    fontSize: "16px",
+    fontFamily: "Work Sans, sans-serif",
+    lineHeight: "20px",
+
+    width: "50px",
+  },
+  about_link:{
+    textDecoration:"none",
+  },
+   shop_text: {
+    color: "#000000",
+    textDecoration: "none",
+    fontWeight: 400,
+    fontSize: "16px",
+    fontFamily: "Work Sans, sans-serif",
+    lineHeight: "20px",
+
+    width: "50px",
+  },
+  shop_link:{
+    textDecoration:"none",
+  },
+
 });
 
 function Header() {
@@ -60,16 +100,23 @@ function Header() {
     history.push("/login_page");
   };
   return (
-    <div>
-      <div className={classes.root}>
+    <div className={classes.root}>
+      {/** left-container*/}
+      <div className={classes.left_container}>
+        <Link className={classes.home_link} to="/">
+          <p className={classes.home_text}>Home</p>
+        </Link>
+        <Link className={classes.about_link} to="/">
+          <p className={classes.about_text}>About</p>
+        </Link>
+        <Link className={classes.shop_link} to="/">
+          <p className={classes.shop_text}>Shop</p>
+        </Link>
+      </div>
+      {/** right-container */}
+      <div className={classes.right_container}>
         <Cart />
         <Sign_in />
-        <Link className={classes.home_link} to="/">
-          <div className={classes.icon}>
-            <AiOutlineHome />
-          </div>
-        </Link>
-
         {userLoggedIn ? (
           <Button className={classes.sign_out} size="small" onClick={logout}>
             Sign out
